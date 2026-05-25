@@ -398,7 +398,7 @@ function createOrUpdateProfile(
               cash_boost,
               offline_gas_boost,
               base_gas_per_second,
-              base-energy_per_second,
+              base_energy_per_second,
               unlocked_plots,
               created_at,
               updated_at
