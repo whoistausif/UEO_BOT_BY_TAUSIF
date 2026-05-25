@@ -59,7 +59,7 @@ module.exports = {
       return { success: false, error: 'No commands loaded' };
     }
     
-    const rest = new REST().setToken(config.token);
+    const rest = new REST().setToken(process.env.TOKEN);
     
     try {
       console.log(`🔄 Deploying ${client.commandArray.length} commands...`);
