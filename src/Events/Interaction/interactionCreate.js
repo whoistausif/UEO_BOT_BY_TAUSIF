@@ -8,6 +8,10 @@ const {
   ChannelType
 } = require('discord.js');
 
+const {
+  wheels
+} = require('../commands/wheelcreate');
+
 module.exports = {
 
   name: Events.InteractionCreate,
@@ -76,6 +80,58 @@ module.exports = {
     // ========================================
 
     if (interaction.isButton()) {
+
+      // ========================================
+      // SPIN CUSTOM WHEEL
+      // ========================================
+
+      if (interaction.customId === 'spin_custom_wheel') {
+
+        const rewards =
+          wheels.get(interaction.guild.id);
+
+        if (!rewards) {
+
+          return interaction.reply({
+
+            content:
+              '❌ No wheel found.',
+
+            ephemeral: true
+
+          });
+
+        }
+
+        const reward =
+          rewards[
+            Math.floor(
+              Math.random() * rewards.length
+            )
+          ];
+
+        const embed =
+          new EmbedBuilder()
+
+            .setColor(0xFFD700)
+
+            .setTitle(
+              '🎡 Wheel Result'
+            )
+
+            .setDescription(
+              `${interaction.user} won:\n\n🎁 **${reward}**`
+            )
+
+            .setTimestamp();
+
+        await interaction.reply({
+
+          embeds: [embed]
+
+        });
+
+      }
 
       // ========================================
       // APPLY BUTTON
