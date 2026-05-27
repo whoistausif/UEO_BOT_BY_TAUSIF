@@ -10,7 +10,7 @@ const {
 
 const {
   wheels
-} = require('../commands/wheelcreate');
+} = require('../../Commands/wheelcreate');
 
 module.exports = {
 
