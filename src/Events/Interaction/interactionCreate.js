@@ -1,4 +1,3 @@
-
 const {
   Events,
   EmbedBuilder,
@@ -85,28 +84,11 @@ module.exports = {
       if (interaction.customId === 'apply_ticket') {
 
         // ========================================
-        // ROLE CHECK
+        // CLAN MOD ROLE ID
         // ========================================
 
         const ALLOWED_ROLE_ID =
           '1503150238582444125';
-
-        if (
-          !interaction.member.roles.cache.has(
-            ALLOWED_ROLE_ID
-          )
-        ) {
-
-          return interaction.reply({
-
-            content:
-              '❌ Only Clan Mods or higher can create tickets.',
-
-            ephemeral: true
-
-          });
-
-        }
 
         // ========================================
         // CHECK EXISTING TICKET
@@ -150,16 +132,18 @@ module.exports = {
 
             permissionOverwrites: [
 
-              // Everyone denied
+              // Everyone allowed
               {
                 id: interaction.guild.id,
 
-                deny: [
-                  PermissionsBitField.Flags.ViewChannel
+                allow: [
+                  PermissionsBitField.Flags.ViewChannel,
+                  PermissionsBitField.Flags.SendMessages,
+                  PermissionsBitField.Flags.ReadMessageHistory
                 ]
               },
 
-              // User
+              // Ticket Creator
               {
                 id: interaction.user.id,
 
@@ -178,7 +162,8 @@ module.exports = {
                 allow: [
                   PermissionsBitField.Flags.ViewChannel,
                   PermissionsBitField.Flags.SendMessages,
-                  PermissionsBitField.Flags.ReadMessageHistory
+                  PermissionsBitField.Flags.ReadMessageHistory,
+                  PermissionsBitField.Flags.ManageMessages
                 ]
               }
 
@@ -207,7 +192,11 @@ module.exports = {
 • 300K/s UI or higher
 
 💥 **How to Apply**
-Upload a screenshot showing your gas/s.`
+Upload a screenshot showing your gas/s.
+
+👥 Everyone can interact in this ticket.
+
+⏳ Please wait for Clan Mods to review your application.`
 
             )
 
@@ -295,4 +284,3 @@ Upload a screenshot showing your gas/s.`
   }
 
 };
-
