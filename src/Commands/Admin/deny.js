@@ -38,9 +38,27 @@ module.exports = {
       embeds: [embed]
     });
 
-    // Close ticket after 5 sec
-    setTimeout(() => {
-      interaction.channel.delete().catch(console.error);
-    }, 5000);
+
+    // ========================================
+    // DELETE ONLY APPLICATION TICKETS
+    // ========================================
+
+    if (
+      interaction.channel.name.startsWith(
+        'application-'
+      )
+    ) {
+
+      setTimeout(() => {
+
+        interaction.channel
+          .delete()
+          .catch(console.error);
+
+      }, 5000);
+
+    }
+
   }
+
 };
